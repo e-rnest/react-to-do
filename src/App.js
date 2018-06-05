@@ -22,9 +22,10 @@ class App extends Component {
 		this.setState( todos: todos )
 	}
 	
-	
-	removeTodo(index) {
-		console.log(index)
+	deleteTodo(index) {
+		const todos = this.state.todos.slice();
+		todos.splice(index,1);
+		this.setState( { todos: todos } );
 	}
 	
 	handleChange(e) {
@@ -44,11 +45,11 @@ class App extends Component {
 				<ul>
 					{ this.state.todos.map( (todo, index) =>
 						<ToDo
-							key={index} 
-							description={todo.description} 
-							isCompleted={todo.isCompleted} 
+							key={ index } 
+							description={ todo.description } 
+							isCompleted={ todo.isCompleted } 
 							toggleComplete={ ()=>this.toggleComplete(index) } 
-							removeTodo={ ()=>this.removeTodo(index) } 
+							deleteTodo={ ()=>this.deleteTodo(index) } 
 						/>
 					)}
 				</ul>
